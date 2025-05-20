@@ -4,29 +4,30 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
+Route::controller(AuthenticationController::class)->group(function () {
+    Route::get('/register', 'register')->name('register');
+    Route::post('/register','store')->name('register.store');
+    Route::get('/login','login')->name('login');
+    Route::post('/login','authenticate')->name('login.authenticate');
+    Route::get('/logout','logout')->name('logout');
+});
+
+Route::controller(PostController::class)->group(function (){
+    Route::get('/' , 'index')->name('posts.index');
+    Route::middleware('auth')->group(function () {
+        Route::get('/posts/create' ,  'create')->name('posts.create');
+        Route::post('/posts' ,  'store')->name('posts.store');
+        Route::get('/posts/{post}/edit' ,  'edit')->name('posts.edit');
+        Route::put('/posts/{post}', 'update')->name('posts.update');
+        Route::get('/posts/{post}' , 'show')->name(('posts.show'));
+        Route::delete('/posts/{post}' , 'destroy')->name('posts.destroy');
+    });
+    
+});
 
 
-//* show all posts
-Route::get('/' , [PostController::class, 'index'])->name('posts.index');
-//* create new post
-Route::get('/posts/create' , [PostController::class, 'create'])->name('posts.create');
-//* store data
-Route::post('/posts' , [PostController::class, 'store'])->name('posts.store');
-//* edit post
-Route::get('/posts/{post}/edit' , [PostController::class, 'edit'])->name('posts.edit');
-//* update
-Route::put('/posts/{post}',[PostController::class, 'update'])->name('posts.update');
-//* show single post
-Route::get('/posts/{post}' , [PostController::class, 'show'])->name(('posts.show'));
-//* delete post
-Route::delete('/posts/{post}' ,[PostController::class, 'destroy'])->name('posts.destroy');
 
 
-Route::get('/register',[AuthenticationController::class , 'register'])->name('register');
-Route::post('/register',[AuthenticationController::class , 'store'])->name('register.store');
-Route::get('/login',[AuthenticationController::class , 'login'])->name('login');
-Route::post('/login',[AuthenticationController::class , 'authenticate'])->name('login.authenticate');
-Route::get('/logout',[AuthenticationController::class , 'logout'])->name('logout');
 
 
 
