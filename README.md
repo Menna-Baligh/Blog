@@ -27,7 +27,7 @@ This is a simple blog app built with Laravel. It allows users to create, read, u
 ### I will add the following features in the future:
 * Categories or Tags
 * Comments
-* User Authentication and Management System
+* User Authentication (done ✅)
 * Likes or Favoriting Posts
 * Notifications and Search
 
