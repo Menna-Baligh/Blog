@@ -35,11 +35,17 @@
                                 <td>{{ $post->created_at->format('Y-m-d') }}</td>
                                 <td>
                                     <a href="{{ route('posts.show' , $post['id']) }}" class="btn btn-info btn-sm">View</a>
-                                    <a href="{{route('posts.edit' , $post['id'])}}" class="btn btn-primary btn-sm">Edit</a>
+                                    <form action="{{ route('posts.edit' , $post['id']) }}" method="get" style="display: inline">
+                                        <button type="submit" class="btn btn-primary btn-sm"
+                                            @php if(Auth::check())if(auth()->user()->id != $post->user->id) echo 'disabled'; @endphp
+                                        >Edit</button>
+                                    </form>
                                     <form style="display:inline" action="{{route('posts.destroy' , $post['id'])}}" method="post" onsubmit="return confirm('Are you sure you want to delete this post?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                        @php if(Auth::check())if(auth()->user()->id != $post->user->id) echo 'disabled'; @endphp
+                                        >Delete</button>
                                     </form>
                                 </td>
                             </tr>

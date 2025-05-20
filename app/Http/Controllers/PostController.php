@@ -48,6 +48,9 @@ class PostController extends Controller
 
     }
     public function edit(Post $post){
+        if (auth()->user()->id != $post->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
         $users = User::all();
         return view('posts.edit',['post' => $post , 'users' => $users]);
     }
@@ -68,6 +71,9 @@ class PostController extends Controller
     }
     public function destroy($postId){
         $post  = Post::findOrFail($postId);
+        if (auth()->user()->id != $post->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
         // 1- delete post from dataBase
         $post->delete();
         // 2- redirct to all posts page
