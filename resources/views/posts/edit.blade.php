@@ -4,6 +4,8 @@
     Edit
 @endsection
 
+    @include('posts.navbar')
+
 @section('content')
 <div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
     <div class="container">

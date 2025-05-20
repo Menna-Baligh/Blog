@@ -4,6 +4,8 @@
     show
 @endsection
 
+    @include('posts.navbar')
+
 @section('content')
 <div class="container mt-5">
 

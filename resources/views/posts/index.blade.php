@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('title')
-    index
+    Blog
 @endsection
+
+@include('posts.navbar')
 
 @section('content')
 <div class="container mt-4">
