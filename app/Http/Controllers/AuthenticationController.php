@@ -13,7 +13,7 @@ class AuthenticationController extends Controller
     public function store(Request $request){
         $request->validate([
             'name' => ['required' , 'min:3'],
-            'email' => ['required' , 'email'],
+            'email' => ['required' , 'email' , 'unique:users,email'],
             'password' => ['required' , 'min:5' , 'confirmed'] ,
         ]);
         $user = User::create([
