@@ -35,6 +35,7 @@ class AuthenticationController extends Controller
         ]);
         if(auth()->attempt($credentials)){
             $request->session()->regenerate();
+            session()->flash('welcome','Welcome, '.auth()->user()->name.' We are Happy To Have You Back :)');
             return to_route('posts.index');
         }
         return back()->withErrors([
