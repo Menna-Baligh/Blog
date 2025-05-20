@@ -1,15 +1,13 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 //* show all posts
-Route::get('/posts' , [PostController::class, 'index'])->name('posts.index');
+Route::get('/' , [PostController::class, 'index'])->name('posts.index');
 //* create new post
 Route::get('/posts/create' , [PostController::class, 'create'])->name('posts.create');
 //* store data
@@ -24,7 +22,11 @@ Route::get('/posts/{post}' , [PostController::class, 'show'])->name(('posts.show
 Route::delete('/posts/{post}' ,[PostController::class, 'destroy'])->name('posts.destroy');
 
 
-
+Route::get('/register',[AuthenticationController::class , 'register'])->name('register');
+Route::post('/register',[AuthenticationController::class , 'store'])->name('register.store');
+Route::get('/login',[AuthenticationController::class , 'login'])->name('login');
+Route::post('/login',[AuthenticationController::class , 'authenticate'])->name('login.authenticate');
+Route::get('/logout',[AuthenticationController::class , 'logout'])->name('logout');
 
 
 
