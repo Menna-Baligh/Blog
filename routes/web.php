@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,18 +14,16 @@ Route::controller(AuthenticationController::class)->group(function () {
 });
 
 Route::controller(PostController::class)->group(function (){
-    Route::get('/' , 'index')->name('posts.index');
     Route::middleware('auth')->group(function () {
         Route::get('/posts/create' ,  'create')->name('posts.create');
         Route::post('/posts' ,  'store')->name('posts.store');
         Route::get('/posts/{post}/edit' ,  'edit')->name('posts.edit');
         Route::put('/posts/{post}', 'update')->name('posts.update');
-        Route::get('/posts/{post}' , 'show')->name(('posts.show'));
         Route::delete('/posts/{post}' , 'destroy')->name('posts.destroy');
     });
-    
+    Route::get('/' , 'index')->name('posts.index');
+    Route::get('/posts/{post}' , 'show')->name(('posts.show'));
 });
-
 
 
 

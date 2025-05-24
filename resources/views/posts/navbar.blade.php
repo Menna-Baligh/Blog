@@ -16,6 +16,11 @@
                                 <a class="nav-link active" aria-current="page" href="{{ route('login') }}">login</a>
                             @endif
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="" style="margin-top:6px;">
+                                <i class="fa-solid fa-heart"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -26,7 +26,7 @@
                 <p>{{ $post->description }}</p>
             </div>
             <div class="post-actions">
-                <button>❤️ Like</button>
+                <button><i class="fa-regular fa-heart"></i>Like</button>
                 <button>💬 Comment</button>
                 <button>🔗 Share</button>
             </div>
