@@ -104,7 +104,15 @@
             gap: 5px;
         }
         .post-actions button:hover {
-            color: #ff4444;
+            color: #163166;
+        }
+        .post-actions button.liked {
+            color: #ff4444; /* Red color for liked state */
+        }
+        .post-actions form {
+            display: inline-flex;
+            margin: 0;
+            padding: 0;
         }
         .comments-section {
             flex: 1;
@@ -161,4 +169,4 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
+        

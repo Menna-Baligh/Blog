@@ -26,7 +26,14 @@
                 <p>{{ $post->description }}</p>
             </div>
             <div class="post-actions">
-                <button><i class="fa-regular fa-heart"></i>Like</button>
+                <form action="{{ route('posts.like' , $post->id) }}" method="post">
+                    @csrf
+                    @if(Auth::check() && $post->likes()->where('user_id' , auth()->user()->id)->exists())
+                        <button type="submit" class="liked"><i class="fa-solid fa-heart"></i>Liked</button>
+                    @else
+                        <button type="submit"><i class="fa-regular fa-heart"></i>Like</button>
+                    @endif
+                </form>
                 <button>💬 Comment</button>
                 <button>🔗 Share</button>
             </div>

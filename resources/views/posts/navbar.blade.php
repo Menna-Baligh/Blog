@@ -17,7 +17,7 @@
                             @endif
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="" style="margin-top:6px;">
+                            <a class="nav-link active" aria-current="page" href="{{ route('posts.likes.index') }}" style="margin-top:6px;">
                                 <i class="fa-solid fa-heart"></i>
                             </a>
                         </li>
