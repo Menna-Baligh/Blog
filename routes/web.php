@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\AuthenticationController;
+use Dom\Comment;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AuthenticationController;
 
 Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
@@ -29,6 +31,13 @@ Route::middleware('auth')->controller(LikeController::class)->group(function () 
     Route::get('/posts/likes','index')->name('posts.likes.index');
     Route::delete('/posts/likes/delete','deleteAll')->name('posts.likes.deleteAll');
     Route::post('/posts/{post}/like', 'like')->name('posts.like');
+});
+
+Route::middleware('auth')->controller(CommentController::class)->group(function () {
+    Route::post('/posts/{post}/comments', 'store')->name('posts.comments.store');
+    Route::delete('/posts/{post}/comments/{comment}', 'destroy')->name('posts.comments.destroy');
+    Route::get('/posts/{post}/comments/{comment}/edit', 'edit')->name('posts.comments.edit');
+    Route::put('/posts/{post}/comments/{comment}', 'update')->name('posts.comments.update');
 });
 
 
