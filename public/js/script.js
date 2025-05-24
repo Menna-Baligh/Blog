@@ -10,3 +10,4 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("Elements not found!");
     }
 });
+

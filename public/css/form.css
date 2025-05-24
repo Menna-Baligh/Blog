@@ -1,0 +1,147 @@
+/* Edit Comment Page Styles */
+.edit-comment-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.edit-comment-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.edit-comment-card h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.original-comment-preview {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-left: 4px solid #4267B2;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.comment-header .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-header h4 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.comment-date {
+    font-size: 13px;
+    color: #7f8c8d;
+}
+
+.original-text {
+    color: #555;
+    font-style: italic;
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.comment-textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 16px;
+    resize: vertical;
+    transition: border 0.3s;
+}
+
+.comment-textarea:focus {
+    border-color: #4267B2;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 103, 178, 0.1);
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.save-button {
+    background: #4267B2;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.save-button:hover {
+    background: #365899;
+}
+
+.cancel-button {
+    background: #f1f1f1;
+    color: #555;
+    border: 1px solid #ddd;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.cancel-button:hover {
+    background: #e2e2e2;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .edit-comment-card {
+        padding: 20px;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .save-button, .cancel-button {
+        width: 100%;
+        text-align: center;
+    }
+}
