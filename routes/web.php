@@ -22,7 +22,13 @@ Route::controller(PostController::class)->group(function (){
         Route::delete('/posts/{post}' , 'destroy')->name('posts.destroy');
     });
     Route::get('/' , 'index')->name('posts.index');
-    Route::get('/posts/{post}' , 'show')->name(('posts.show'));
+    Route::get('/posts/{post}/show' , 'show')->name(('posts.show'));
+});
+
+Route::middleware('auth')->controller(LikeController::class)->group(function () {
+    Route::get('/posts/likes','index')->name('posts.likes.index');
+    Route::delete('/posts/likes/delete','deleteAll')->name('posts.likes.deleteAll');
+    Route::post('/posts/{post}/like', 'like')->name('posts.like');
 });
 
 
