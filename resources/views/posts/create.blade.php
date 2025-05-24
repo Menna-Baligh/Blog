@@ -42,10 +42,7 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Post Creator</label>
                                     <select name="post_creator" class="form-select" required>
-                                        <option value="" disabled selected>Select creator</option>
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                        @endforeach
+                                        <option value="{{ auth()->user()->id }}" selected>{{ auth()->user()->name }}</option>
                                     </select>
                                 </div>
 
