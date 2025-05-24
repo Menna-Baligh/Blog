@@ -14,8 +14,8 @@ class PostController extends Controller
         return view('posts.index' ,['posts' => $posts]);
     }
     public function show(Post $post){
-        
-        return view('posts.show' ,['post' => $post]);
+        $comments = $post->comments()->paginate(2);
+        return view('posts.show' ,['post' => $post , 'comments' => $comments]);
     }
     public function create(){
         $users = User::all();
