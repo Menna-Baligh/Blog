@@ -34,7 +34,7 @@
                         <button type="submit"><i class="fa-regular fa-heart"></i>Like</button>
                     @endif
                 </form>
-                <button>💬 Comment</button>
+                <button id="commentButton">💬 Comment</button>
                 <button>🔗 Share</button>
             </div>
         </div>
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="comment-input">
-                <input type="text" placeholder="Write a comment...">
+                <input type="text" placeholder="Write a comment..." id="commentInput">
                 <button>Post</button>
             </div>
         </div>

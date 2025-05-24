@@ -170,3 +170,8 @@
             cursor: pointer;
         }
         
+        #commentInput:focus {
+            border-color: #4267B2;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(66, 103, 178, 0.2);
+        }
