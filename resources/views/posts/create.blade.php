@@ -8,7 +8,7 @@
 
 
 @section('content')
-    
+
     <div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
         <div class="container">
             <div class="row justify-content-center">
@@ -43,6 +43,14 @@
                                     <label class="form-label fw-bold">Post Creator</label>
                                     <select name="post_creator" class="form-select" required>
                                         <option value="{{ auth()->user()->id }}" selected>{{ auth()->user()->name }}</option>
+                                    </select>
+                                </div>
+                                <label>Tags:</label>
+                                <div class="mb-3">
+                                    <select name="tags[]" class="form-select" multiple required>
+                                        @foreach($tags as $tag)
+                                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 

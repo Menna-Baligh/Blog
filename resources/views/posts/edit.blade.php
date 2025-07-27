@@ -46,6 +46,14 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <label>Tags:</label>
+                                <div class="mb-3">
+                                    <select name="tags[]" class="form-select" multiple required>
+                                        @foreach($tags as $tag)
+                                            <option value="{{ $tag->id }}" @selected($post->tags->contains($tag->id))>{{ $tag->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
                             <div class="d-grid">
                             <button type="submit" class="btn btn-dark">Update</button>

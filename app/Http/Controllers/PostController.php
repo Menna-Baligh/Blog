@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,11 +16,13 @@ class PostController extends Controller
     }
     public function show(Post $post){
         $comments = $post->comments()->paginate(2);
-        return view('posts.show' ,['post' => $post , 'comments' => $comments]);
+        $tags = $post->tags()->get();
+        return view('posts.show' ,['post' => $post , 'comments' => $comments , 'tags' => $tags]);
     }
     public function create(){
         $users = User::all();
-        return view('posts.create',['users' => $users]);
+        $tags = Tag::all();
+        return view('posts.create',['users' => $users , 'tags' => $tags]);
     }
     public function store(Request $request){
         //? 0- validate data
@@ -32,16 +35,17 @@ class PostController extends Controller
         $title = request()->title ;
         $desc = request()->description ;
         $postCreator = request()->post_creator ;
-        
+
         // use dump and die to stop the execution and see the data
         // dd($title , $desc , $postCreator);
 
         //? 2- store the data in the database
-        Post::create([
+        $post = Post::create([
             'title' => $title ,
             'description' => $desc ,
             'user_id' => Auth::user()->id,
         ]);
+        $post->tags()->attach($request->tags);
 
         //? 3- redirect to all posts page
         return to_route('posts.index');
@@ -53,7 +57,8 @@ class PostController extends Controller
             abort(403, 'Unauthorized action.');
         }
         $users = User::all();
-        return view('posts.edit',['post' => $post , 'users' => $users]);
+        $tags = Tag::all();
+        return view('posts.edit',['post' => $post , 'users' => $users , 'tags' => $tags]);
     }
     public function update($postId , Request $request){
         $post = Post::findOrFail($postId);
@@ -68,6 +73,7 @@ class PostController extends Controller
             'description' => $data['description'],
             'user_id' => $data['post_creator']
         ]);
+        $post->tags()->sync($data['tags']);
         return to_route('posts.show' , ['post' => $post]);
     }
     public function destroy($postId){

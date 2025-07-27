@@ -21,9 +21,13 @@
                 </div>
             </div>
             <div class="post-content">
-                <h2>{{ $post->title }}</h2>
+                @foreach ($tags as $tag)
+                    <span class="badge bg-primary">{{ $tag->name }}</span>
+                @endforeach
                 <hr>
-                <p>{{ $post->description }}</p>
+                <h2>Title: {{ $post->title }}</h2>
+                <hr>
+                <p>Description: {{ $post->description }}</p>
             </div>
             <div class="post-actions">
                 <form action="{{ route('posts.like' , $post->id) }}" method="post">
@@ -66,7 +70,7 @@
                 <span>{{ $comment->created_at->format('Y-m-d h:i A') }}</span>
             </div>
         </div>
-                        
+
             @empty
                 {{-- no comments --}}
                 <div class="no-comments">
@@ -76,25 +80,25 @@
                     <p>No comments yet. Be the first to share your thoughts!</p>
                 </div>
             @endforelse
-            
-            
+
+
             <div class="comment-input">
                 <form action="{{ route('posts.comments.store', $post->id) }}" method="post">
                     @csrf
                     <input type="text" name="comment" placeholder="Write a comment..." id="commentInput">
                     <button type="submit">Post</button>
                 </form>
-                
+
             </div>
             <div class="pagination-wrapper">
                 <div class="pagination">
                 {{ $comments->links() }}
                 </div>
             </div>
-            
+
         </div>
     </div>
-    
+
 
 @endsection
 
